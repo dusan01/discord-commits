@@ -14,6 +14,7 @@ module.exports.send = (id, token, repo, url, commits, size, pusher, branch) =>
       client
         .send({
           username: username,
+          avatarURL: 'https://i.postimg.cc/Y2hVnH6K/e-Wave-2138-no-border-square.png',
           embeds: [createEmbed(url, commits, size, pusher, branch)],
         })
         .then(() => {
@@ -47,7 +48,7 @@ function createEmbed(url, commits, size, pusher, branch) {
     .setTimestamp(Date.parse(latest.timestamp))
     .setFooter({
       text: 'Your footer text here',
-      iconURL: 'https://i.postimg.cc/Y2hVnH6K/e-Wave-2138-no-border-square.png',  // Replace with the desired icon URL
+      iconURL: 'https://i.postimg.cc/Y2hVnH6K/e-Wave-2138-no-border-square.png',
     });
 }
 
