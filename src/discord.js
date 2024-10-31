@@ -40,14 +40,13 @@ function createEmbed(url, commits, size, pusher, branch) {
   return new MessageEmbed()
     .setColor(0xff3461)
     .setAuthor({
-      name: `⚡ ${pusher} pushed ${size} commit${size === 1 ? '' : 's'}`,
+      name: `⚡ ${pusher} pushed ${size} commit${size === 1 ? '' : 's'} (Branch: ${branch})`,
       iconURL: `https://github.com/${pusher}.png?size=64`,
       url: url,
     })
-    .setDescription(`${getChangeLog(commits, size, branch)}`)
-    .setTimestamp(Date.parse(latest.timestamp))
+    .setDescription(`${getChangeLog(commits, size)}`)
+    .setTimestamp(Date.parse(latest.timestamp));
 }
-
 
 
 function getChangeLog(commits, size) {
