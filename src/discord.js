@@ -39,13 +39,18 @@ function createEmbed(url, commits, size, pusher, branch) {
   return new MessageEmbed()
     .setColor(0xff3461)
     .setAuthor({
-      name: `⚡ ${pusher} pushed ${size} commit${size === 1 ? '' : 's'} (Branch: ${branch})`,
+      name: `⚡ ${pusher} pushed ${size} commit${size === 1 ? '' : 's'}`,
       iconURL: `https://github.com/${pusher}.png?size=64`,
       url: url,
     })
-    .setDescription(`${getChangeLog(commits, size)}`)
-    .setTimestamp(Date.parse(latest.timestamp));
+    .setDescription(`${getChangeLog(commits, size, branch)}`)
+    .setTimestamp(Date.parse(latest.timestamp))
+    .setFooter({
+      text: 'Your footer text here',
+      iconURL: 'https://i.postimg.cc/Y2hVnH6K/e-Wave-2138-no-border-square.png',  // Replace with the desired icon URL
+    });
 }
+
 
 
 function getChangeLog(commits, size) {
