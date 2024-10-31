@@ -27,7 +27,7 @@ module.exports.send = (id, token, repo, url, commits, size, pusher, branch) =>
     }
   });
 
-function createEmbed(url, commits, size, pusher, branch) {
+function createEmbed(url, commits, size, pusher) {
   console.log('Constructing Embed...');
   console.log('Commits :');
   console.log(commits);
@@ -39,7 +39,7 @@ function createEmbed(url, commits, size, pusher, branch) {
   return new MessageEmbed()
     .setColor(0xff3461)
     .setAuthor({
-      name: `⚡ ${pusher} pushed ${size} commit${size === 1 ? '' : 's'} (Branch: ${branch})`,
+      name: `⚡ ${pusher} pushed ${size} commit${size === 1 ? '' : 's'}`,
       iconURL: `https://github.com/${pusher}.png?size=64`,
       url: url,
     })
@@ -48,7 +48,7 @@ function createEmbed(url, commits, size, pusher, branch) {
 }
 
 
-function getChangeLog(commits, size) {
+function getChangeLog(commits, size, branch) {
   let changelog = ''
   for (const i in commits) {
     if (i > 7) {
@@ -62,7 +62,7 @@ function getChangeLog(commits, size) {
       commit.message.length > MAX_MESSAGE_LENGTH
         ? commit.message.substring(0, MAX_MESSAGE_LENGTH) + '...'
         : commit.message
-    changelog += `[\`${sha}\`](${commit.url}) — ${message} ([\`${commit.author.username}\`](https://github.com/${commit.author.username}))\n Test`
+    changelog += `Branch: ${branch}\n[\`${sha}\`](${commit.url}) — ${message} ([\`${commit.author.username}\`](https://github.com/${commit.author.username}))\n`
   }
 
   return changelog
