@@ -46,10 +46,6 @@ function createEmbed(url, commits, size, pusher, branch) {
     })
     .setDescription(`${getChangeLog(commits, size, branch)}`)
     .setTimestamp(Date.parse(latest.timestamp))
-    .setFooter({
-      text: 'Your footer text here',
-      iconURL: 'https://i.postimg.cc/Y2hVnH6K/e-Wave-2138-no-border-square.png',
-    });
 }
 
 
